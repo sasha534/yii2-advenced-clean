@@ -17,7 +17,7 @@ return [
             'class' => 'api\modules\v1\Module'
         ]
     ],
-    'components' => [        
+    'components' => [
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => false,
@@ -36,15 +36,17 @@ return [
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                [
-                    'class' => 'yii\rest\UrlRule', 
-                    'controller' => 'v1/country',
-                    'tokens' => [
-                        '{id}' => '<id:\\w+>'
-                    ]
-                    
-                ]
-            ],        
+                'v1/site/' => 'v1/site/index'
+            ],
+//            'rules' => [
+//                [
+//                    'class' => \yii\rest\UrlRule::class,
+//                    'controller' => ['v1/actions'],
+//                    'prefix' => 'api', //api будет доступен по url, начинающимся с /api/
+//                    'extraPatterns' => [
+//                        'GET /' => 'new',
+//                    ],
+//                ],
         ]
     ],
     'params' => $params,
