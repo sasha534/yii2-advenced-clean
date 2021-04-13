@@ -1,7 +1,8 @@
 <?php
 
-namespace api\modules\v1\controllers;
+namespace api\controllers;
 
+use yii\helpers\Url;
 use yii\rest\ActiveController;
 
 /**
@@ -11,7 +12,7 @@ use yii\rest\ActiveController;
  */
 class CountryController extends ActiveController
 {
-    public function indexAction()
+    public function indexAction(): string
     {
         return '!!!!!!!!!!!!!!!!!!!!!!!!!';
     }

@@ -1,5 +1,58 @@
 <?php
 
+//$params = array_merge(
+//    require(__DIR__ . '/../../common/config/params.php'),
+//    require(__DIR__ . '/../../common/config/params-local.php'),
+//    require(__DIR__ . '/params.php'),
+//    require(__DIR__ . '/params-local.php')
+//);
+//
+//return [
+//    'id' => 'app-api',
+//    'basePath' => dirname(__DIR__),
+//    'bootstrap' => ['log'],
+//    'modules' => [
+//        'v1' => [
+//            'basePath' => '@app/modules/v1',
+//            'class' => 'api\modules\v1\Module'
+//        ]
+//    ],
+//    'components' => [
+//        'user' => [
+//            'identityClass' => 'common\models\User',
+//            'enableAutoLogin' => false,
+//        ],
+//        'log' => [
+//            'traceLevel' => YII_DEBUG ? 3 : 0,
+//            'targets' => [
+//                [
+//                    'class' => 'yii\log\FileTarget',
+//                    'levels' => ['error', 'warning'],
+//                ],
+//            ],
+//        ],
+//        'urlManager' => [
+//            'enablePrettyUrl' => true,
+//            'enableStrictParsing' => true,
+//            'showScriptName' => false,
+////            'rules' => [
+////                'v1/site/' => 'v1/site/index'
+////            ],
+//            'rules' => [
+//                [
+//                    'class' => \yii\rest\UrlRule::class,
+//                    'controller' => ['v1/country'],
+//                    'prefix' => 'api', //api будет доступен по url, начинающимся с /api/
+//                    'extraPatterns' => [
+//                        'GET /' => 'index',
+//                    ],
+//                ],
+//        ]
+//    ],
+//    'params' => $params,
+//        ]
+//];
+
 $params = array_merge(
     require(__DIR__ . '/../../common/config/params.php'),
     require(__DIR__ . '/../../common/config/params-local.php'),
@@ -9,12 +62,12 @@ $params = array_merge(
 
 return [
     'id' => 'app-api',
-    'basePath' => dirname(__DIR__),    
+    'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'modules' => [
         'v1' => [
             'basePath' => '@app/modules/v1',
-            'class' => 'api\modules\v1\Module'
+            'class' => \api\modules\v1\Module::class
         ]
     ],
     'components' => [
@@ -36,17 +89,25 @@ return [
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                'v1/site/' => 'v1/site/index'
-            ],
-//            'rules' => [
 //                [
-//                    'class' => \yii\rest\UrlRule::class,
-//                    'controller' => ['v1/actions'],
-//                    'prefix' => 'api', //api будет доступен по url, начинающимся с /api/
-//                    'extraPatterns' => [
-//                        'GET /' => 'new',
-//                    ],
-//                ],
+//                    'v1/site/' => 'v1/site/index',
+////                    'class' => 'yii\rest\UrlRule',
+////                    'controller' => 'v1/country/index',
+////                    'tokens' => [
+////                        '{id}' => '<id:\\w+>'
+////                    ]
+//
+//                ]
+                [
+                    'class' => \yii\rest\UrlRule::class,
+                    'controller' => ['v1/country'],
+                    'prefix' => 'api',
+//                    'v1/country/' => 'v1/country/index',
+                    'extraPatterns' => [
+                        'GET /' => 'index',
+                    ],
+                ]
+            ],
         ]
     ],
     'params' => $params,
