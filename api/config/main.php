@@ -64,6 +64,7 @@ return [
     'id' => 'app-api',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'controllerNamespace' => 'api\controller',
     'modules' => [
         'v1' => [
             'basePath' => '@app/modules/v1',
@@ -89,24 +90,9 @@ return [
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-//                [
-//                    'v1/site/' => 'v1/site/index',
-////                    'class' => 'yii\rest\UrlRule',
-////                    'controller' => 'v1/country/index',
-////                    'tokens' => [
-////                        '{id}' => '<id:\\w+>'
-////                    ]
-//
-//                ]
-                [
-                    'class' => \yii\rest\UrlRule::class,
-                    'controller' => ['v1/country'],
-                    'prefix' => 'api',
-//                    'v1/country/' => 'v1/country/index',
-                    'extraPatterns' => [
-                        'GET /' => 'index',
-                    ],
-                ]
+                '/' => 'site/index',
+                'docs' => 'site/docs',
+                'json-schema' => 'site/json-schema'
             ],
         ]
     ],

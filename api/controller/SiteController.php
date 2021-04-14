@@ -1,6 +1,6 @@
 <?php
 
-namespace api\controllers;
+namespace api\controller;
 
 use Yii;
 use yii\web\Controller;
@@ -33,7 +33,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
 //        return $this->redirect(['site/docs']);
-        var_dump('HHHHHeeeeeLLLLOOOOOOO');
+        var_dump('HHHHHeeeeeLLLLOOOOOOO');die;
     }
 
     public function actionError()
