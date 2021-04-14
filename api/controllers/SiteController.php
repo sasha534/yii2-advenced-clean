@@ -1,6 +1,6 @@
 <?php
 
-namespace api\controller;
+namespace api\controllers;
 
 use Yii;
 use yii\web\Controller;
@@ -10,22 +10,30 @@ use yii\helpers\Url;
 class SiteController extends Controller
 {
     /**
-     * @inheritdoc
+     * @SWG\Swagger(
+     *     basePath="/",
+     *     produces={"application/json"},
+     *     consumes={"application/x-www-form-urlencoded"},
+     *     @SWG\Info(version="1.0", title="Simple API"),
+     * )
      */
     public function actions(): array
     {
         return [
             'docs' => [
-                'class' => \yii2mod\swagger\SwaggerUIRenderer::class,
+                'class' => 'yii2mod\swagger\SwaggerUIRenderer',
                 'restUrl' => Url::to(['site/json-schema']),
             ],
             'json-schema' => [
-                'class' => \yii2mod\swagger\OpenAPIRenderer::class,
+                'class' => 'yii2mod\swagger\OpenAPIRenderer',
                 // Тhe list of directories that contains the swagger annotations.
                 'scanDir' => [
-                    Yii::getAlias('@api/modules/v1/controllers'),
-                    Yii::getAlias('@api/modules/v1/models'),
+                    Yii::getAlias('@app/swagger/controllers'),
+                    Yii::getAlias('@app/swagger/models'),
                 ],
+            ],
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
             ],
         ];
     }

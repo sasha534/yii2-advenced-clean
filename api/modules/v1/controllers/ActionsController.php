@@ -1,10 +1,10 @@
 <?php
 
-namespace app\controllers;
+namespace api\modules\v1\controllers;
 
 use Yii;
-use app\models\Actions;
-use app\models\ActionsSearch;
+use api\modules\v1\models\Actions;
+use api\modules\v1\models\ActionsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -50,11 +50,22 @@ class ActionsController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView(int $id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+//        return $this->render('view', [
+//            'model' => $this->findModel($id),
+//        ]);
+//        var_dump($id);
+//        die;
+
+        $some = $this->findModel($id);
+
+        var_dump($some);
+        die;
+
+
+
+        return $some;
     }
 
     /**
